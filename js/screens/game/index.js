@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  AsyncStorage
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo';
 import QuestionView from './QuestionView';
 import AnswerView from './AnswerView';
@@ -23,29 +16,26 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.setupGame(
+    this.props.setupNextSyllable(
       'hiragana',
       this.props.navigation.getParam('level', DEFAULT_LEVEL)
     );
   }
 
   componentDidUpdate(prevProps) {
-    const { game, unlockedLevel, setupGame } = this.props;
-    // console.log(game.level);
-    // console.log(unlockedLevel);
+    const { game, unlockedLevel, setupNextSyllable } = this.props;
+    console.log(game);
+
     if (game.pending) {
-      if (game.level > unlockedLevel) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (game.lives === 0) {
           this.props.navigation.navigate('LevelSelection', {
             preselectedLevel: game.level
           });
-          this.props.setPersistedStore({ unlockedLevel: game.level });
-        }, PAUSE);
-      } else {
-        setTimeout(() => {
-          // setupGame('hiragana', game.level);
-        }, PAUSE);
-      }
+        }
+
+        setupNextSyllable('hiragana', game.level);
+      }, PAUSE);
     }
   }
 
@@ -59,7 +49,7 @@ class Game extends React.Component {
   };
 
   render() {
-    const { game, navigation, setupGame } = this.props;
+    const { game, navigation } = this.props;
 
     return (
       <LinearGradient
@@ -72,7 +62,7 @@ class Game extends React.Component {
               <Hearts lives={game.lives} />
               <Diamonds score={game.score} />
             </View>
-            <QuestionView game={game} setupGame={setupGame} />
+            <QuestionView game={game} />
             <AnswerView
               answers={game.choices}
               correctAnswer={game.correctAnswer}
@@ -119,11 +109,14 @@ const mapStateToProps = ({ game, persistedStore }) => ({
 
 const mapActionToProps = ({ game, persistedStore }) => {
   return {
-    setupGame: game.setupGame,
+    setupNextSyllable: game.setupNextSyllable,
     setGivenAnswer: game.setGivenAnswer,
     checkGivenAnswer: game.checkGivenAnswer,
     setPersistedStore: persistedStore.setPersistedStore
   };
 };
 
-export default connect(mapStateToProps, mapActionToProps)(Game);
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(Game);

@@ -44,7 +44,7 @@ export default class GemSpawner extends React.Component {
     });
 
     if (!this.state.earnedGems.length) {
-      this.props.setupGame('hiragana', 1);
+      this.props.setupNextSyllable('hiragana', 1);
     }
   };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Svg } from 'expo';
 import theme from '../../utils/theme';
-import GemSpawner from './GemSpawner';
+// import GemSpawner from './GemSpawner';
 
 const { width } = Dimensions.get('window');
 
@@ -20,15 +20,15 @@ const BottomEllipse = () => (
   </Svg>
 );
 
-export default ({ game, setupGame }) => {
+export default ({ game }) => {
   return (
     <View style={styles.questionContainer}>
       <View style={styles.background} />
       <BottomEllipse />
       <Text style={styles.questionText}>{game.correctAnswer.kanaChar}</Text>
-      {game.status === 'spawnGems' && (
-        <GemSpawner earnedGems={game.earnedGems} setupGame={setupGame} />
-      )}
+      {/* {game.status === 'spawnGems' && (
+        <GemSpawner earnedGems={game.earnedGems} setupNextSyllable={setupNextSyllable} />
+      )} */}
     </View>
   );
 };
