@@ -6,8 +6,8 @@ While still in early development and only a side-project, we decided to make thi
 
 ## maintainers
 
-#### [Tobias Alten](https://github.com/cykler)
-#### [Max Rittmüller](https://github.com/maxrimue)
+**[Tobias Alten](https://github.com/cykler)**  
+**[Max Rittmüller](https://github.com/maxrimue)**
 
 ## license
 
