@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { LinearGradient } from 'expo';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 import Button from '../../elements/Button';
 import theme from '../../utils/theme';
 
@@ -16,7 +16,7 @@ export default ({ navigation }) => {
         <Text style={styles.title}>PAUSED</Text>
         <Button
           onPress={() => {
-            const navigateAction = NavigationActions.reset({
+            const navigateAction = StackActions.reset({
               index: 0,
               actions: [
                 NavigationActions.navigate({
