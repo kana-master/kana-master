@@ -9,7 +9,7 @@ import { getChoices, getHearts, updateScore } from '../../utils/logic';
   spawnGems = executing the gem spawn animation and addition
 */
 
-export const setupGame = (state, selectedKana, selectedLevel) => {
+export const setupNextSyllable = (state, selectedKana, selectedLevel) => {
   const availableSyllables = _.filter(
     kana[selectedKana],
     syllable => syllable.level <= selectedLevel
@@ -55,16 +55,3 @@ export const setGivenAnswer = (state, givenAnswer) => {
     }
   };
 };
-
-// export const setGivenAnswer = (state, givenAnswer) => {
-//   const score = updateScore(state, givenAnswer);
-//   level = state.levelGoal === score ? state.level + 1 : state.level;
-
-//   return {
-//     game: {
-//       ...state,
-//       earnedGems: 0,
-//       status: 'pending'
-//     }
-//   };
-// };

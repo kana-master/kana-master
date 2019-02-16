@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar, Text, TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { Font } from 'expo';
 import Provider from './js/context/Provider';
 import KanaSelection from './js/screens/kanaSelection';
@@ -13,10 +13,10 @@ import { clearPersistedStore } from './js/context/utils';
 StatusBar.setBarStyle('light-content');
 StatusBar.setHidden(true);
 
-const Routes = StackNavigator(
+const AppNavigator = createStackNavigator(
   {
     Main: {
-      screen: StackNavigator(
+      screen: createStackNavigator(
         {
           KanaSelection: {
             screen: KanaSelection
@@ -29,7 +29,7 @@ const Routes = StackNavigator(
           }
         },
         {
-          initialRouteName: 'Game',
+          initialRouteName: 'LevelSelection',
           navigationOptions: {
             header: null
           },
@@ -50,6 +50,8 @@ const Routes = StackNavigator(
     headerMode: 'none'
   }
 );
+
+const Routes = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   state = {
