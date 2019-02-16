@@ -34,7 +34,7 @@ const AppNavigator = createStackNavigator(
             header: null
           },
           mode: 'card',
-          headerMode: 'screen'
+          headerMode: 'none'
         }
       )
     },
