@@ -43,4 +43,7 @@ const mapActionToProps = ({ persistedStore }) => ({
   clearPersistedStore: persistedStore.clearPersistedStore
 });
 
-export default connect(mapStateToProps, mapActionToProps)(Debug);
+export default connect(
+  mapStateToProps,
+  mapActionToProps
+)(Debug);
