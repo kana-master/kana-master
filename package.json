@@ -2,8 +2,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "prettier": "prettier --list-different **/*.js",
-    "prettier-fix": "prettier --list-different --write **/*.js",
+    "prettier": "prettier --check \"**/*.js\"",
+    "prettier-fix": "prettier --write \"**/*.js\"",
     "lint": "npm run prettier",
     "test": "npm run lint"
   },
