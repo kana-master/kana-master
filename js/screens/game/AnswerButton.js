@@ -19,13 +19,16 @@ export default class AnswerButton extends React.Component {
   }
 
   render() {
+    const { onPress, answer, disabled } = this.props;
+
     return (
       <TouchableOpacity
+        disabled={disabled}
         style={[styles.button, this.props.style, this.getAnswerStyle('button')]}
-        onPress={() => this.props.onPress(this.props.answer)}
+        onPress={() => onPress(answer)}
       >
         <Text style={[styles.text, this.getAnswerStyle('text')]}>
-          {this.props.answer.latinChar}
+          {answer.latinChar}
         </Text>
       </TouchableOpacity>
     );

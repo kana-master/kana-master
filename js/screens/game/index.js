@@ -23,12 +23,10 @@ class Game extends React.Component {
 
   componentDidUpdate() {
     const { game, setupNextSyllable } = this.props;
-    console.log(game);
 
     if (game.pending) {
       setTimeout(() => {
         if (game.lives === 0) {
-          this.props.resetGameState();
           this.props.navigation.navigate('LevelSelection', {
             preselectedLevel: game.level
           });
@@ -37,6 +35,10 @@ class Game extends React.Component {
         setupNextSyllable('hiragana', game.level);
       }, PAUSE);
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetGameState();
   }
 
   checkAnswer = givenAnswer => {
@@ -68,6 +70,7 @@ class Game extends React.Component {
               correctAnswer={game.correctAnswer}
               givenAnswer={game.givenAnswer}
               checkAnswer={this.checkAnswer}
+              disabled={game.status === 'spawnGems'}
             />
             <TouchableOpacity
               onPress={() => navigation.navigate('Pause')}
