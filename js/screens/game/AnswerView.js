@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import _ from 'lodash';
 import AnswerButton from './AnswerButton';
 
-export default ({ answers, correctAnswer, givenAnswer, checkAnswer }) => {
+export default ({ answers, givenAnswer, checkAnswer, disabled }) => {
   return (
     <View style={styles.answerButtonContainer}>
       {answers.map((syllable, i) => {
@@ -14,6 +14,7 @@ export default ({ answers, correctAnswer, givenAnswer, checkAnswer }) => {
 
         return (
           <AnswerButton
+            disabled={disabled}
             answer={syllable}
             key={i}
             highlight={highlight}
