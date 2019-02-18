@@ -9,6 +9,14 @@ import { getChoices, getHearts, updateScore } from '../../utils/logic';
   spawnGems = executing the gem spawn animation and addition
 */
 
+export const resetGameState = state => ({
+  game: {
+    ...state,
+    lives: 3,
+    score: 0
+  }
+});
+
 export const setupNextSyllable = (state, selectedKana, selectedLevel) => {
   const availableSyllables = _.filter(
     kana[selectedKana],

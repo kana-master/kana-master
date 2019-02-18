@@ -7,7 +7,6 @@ import Hearts from './Hearts';
 import Diamonds from './Diamonds';
 import theme from '../../utils/theme';
 import { connect } from '../../context/connect';
-// import { setPersistedStore } from '../../context/utils';
 
 const PAUSE = 500;
 const DEFAULT_LEVEL = 1;
@@ -22,13 +21,14 @@ class Game extends React.Component {
     );
   }
 
-  componentDidUpdate(prevProps) {
-    const { game, unlockedLevel, setupNextSyllable } = this.props;
+  componentDidUpdate() {
+    const { game, setupNextSyllable } = this.props;
     console.log(game);
 
     if (game.pending) {
       setTimeout(() => {
         if (game.lives === 0) {
+          this.props.resetGameState();
           this.props.navigation.navigate('LevelSelection', {
             preselectedLevel: game.level
           });
@@ -40,7 +40,7 @@ class Game extends React.Component {
   }
 
   checkAnswer = givenAnswer => {
-    const { setGivenAnswer, game, navigation } = this.props;
+    const { setGivenAnswer, game } = this.props;
 
     setGivenAnswer({
       ...givenAnswer,
@@ -110,6 +110,7 @@ const mapStateToProps = ({ game, persistedStore }) => ({
 const mapActionToProps = ({ game, persistedStore }) => {
   return {
     setupNextSyllable: game.setupNextSyllable,
+    resetGameState: game.resetGameState,
     setGivenAnswer: game.setGivenAnswer,
     checkGivenAnswer: game.checkGivenAnswer,
     setPersistedStore: persistedStore.setPersistedStore
