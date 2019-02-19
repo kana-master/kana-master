@@ -7,7 +7,11 @@ import theme from '../../utils/theme';
 const { width } = Dimensions.get('window');
 
 const BottomEllipse = () => (
-  <Svg height={52} width={width} style={{ position: 'absolute', bottom: 0 }}>
+  <Svg
+    height={52}
+    width={width}
+    style={{ position: 'absolute', bottom: 0, backgroundColor: '#9ACFFF' }}
+  >
     <Svg.Ellipse
       cx={width / 2}
       cy={0}
@@ -23,29 +27,21 @@ const BottomEllipse = () => (
 export default ({ game }) => {
   return (
     <View style={styles.questionContainer}>
-      <View style={styles.background} />
-      <BottomEllipse />
       <Text style={styles.questionText}>{game.correctAnswer.kanaChar}</Text>
       {/* {game.status === 'spawnGems' && (
         <GemSpawner earnedGems={game.earnedGems} setupNextSyllable={setupNextSyllable} />
       )} */}
+      <BottomEllipse />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   questionContainer: {
-    height: 320,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 24
-  },
-  background: {
-    height: 268,
-    backgroundColor: '#fff',
-    position: 'absolute',
-    width: '100%',
-    top: 0
+    flex: 1,
+    backgroundColor: '#fff'
   },
   questionText: {
     fontSize: 92,

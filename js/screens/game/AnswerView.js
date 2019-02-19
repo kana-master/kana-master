@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   answerButtonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginHorizontal: 24
+    marginHorizontal: 24,
+    marginTop: 16
   }
 });

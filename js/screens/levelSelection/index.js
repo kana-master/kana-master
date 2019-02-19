@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { LinearGradient } from 'expo';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import _ from 'lodash';
-import theme from '../../utils/theme';
 import { connect } from '../../context/connect';
 import levels from '../../data/levels';
 import Button from '../../elements/Button';
@@ -18,10 +17,8 @@ class LevelSelection extends React.Component {
 
   render() {
     return (
-      <LinearGradient
-        style={styles.container}
-        colors={theme.color.gradient.primary}
-      >
+      <View style={styles.container}>
+        <StatusBar backgroundColor="blue" barStyle="light-content" />
         <Text>Master the Hiragana</Text>
         <View style={styles.levelSelection}>
           {levels.map(({ id }) => {
@@ -48,18 +45,7 @@ class LevelSelection extends React.Component {
         >
           Let's go!
         </Button>
-        <TouchableHighlight
-          onPress={() => this.props.navigation.navigate('Debug')}
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            backgroundColor: 'red'
-          }}
-        >
-          <Text>Debug</Text>
-        </TouchableHighlight>
-      </LinearGradient>
+      </View>
     );
   }
 }
@@ -67,9 +53,10 @@ class LevelSelection extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
+    // paddingTop: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#9ACFFF'
   },
   levelSelection: {
     flexDirection: 'row',

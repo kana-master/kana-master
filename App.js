@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, SafeAreaView } from 'react-native';
+import { StatusBar } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { Font } from 'expo';
 import Provider from './js/context/Provider';
@@ -69,14 +69,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <Provider>
-        {this.state.fontLoaded && (
-          <SafeAreaView style={{ flex: 1 }}>
-            <Routes />
-          </SafeAreaView>
-        )}
-      </Provider>
-    );
+    return <Provider>{this.state.fontLoaded && <Routes />}</Provider>;
   }
 }

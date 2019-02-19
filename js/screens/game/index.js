@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { LinearGradient } from 'expo';
+import { SafeAreaView } from 'react-navigation';
 import QuestionView from './QuestionView';
 import AnswerView from './AnswerView';
 import Hearts from './Hearts';
 import Diamonds from './Diamonds';
-import theme from '../../utils/theme';
 import { connect } from '../../context/connect';
 
 const PAUSE = 500;
@@ -54,10 +53,7 @@ class Game extends React.Component {
     const { game, navigation } = this.props;
 
     return (
-      <LinearGradient
-        style={styles.container}
-        colors={theme.color.gradient.primary}
-      >
+      <SafeAreaView style={styles.container}>
         {game.initialized ? (
           <React.Fragment>
             <View style={styles.statusContainer}>
@@ -74,24 +70,25 @@ class Game extends React.Component {
             />
             <TouchableOpacity
               onPress={() => navigation.navigate('Pause')}
-              style={{ marginHorizontal: 25 }}
+              style={{ marginHorizontal: 25, marginBottom: 16 }}
             >
               <Image
                 style={{ width: 32, height: 23 }}
                 source={require('../../../assets/back.png')}
               />
             </TouchableOpacity>
-            <Text>level {game.level}</Text>
           </React.Fragment>
         ) : null}
-      </LinearGradient>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#9ACFFF',
+    position: 'relative'
   },
   statusContainer: {
     paddingHorizontal: 24,
@@ -101,7 +98,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     zIndex: 1,
-    width: '100%'
+    width: '100%',
+    flex: 0
   }
 });
 
