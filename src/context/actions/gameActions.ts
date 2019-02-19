@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import * as kana from '../../data/kana';
 import levels from '../../data/levels';
-import { getChoices, getHearts, updateScore } from '../../utils/logic';
+import { getChoices, updateHearts, updateScore } from '../../utils/logic';
 
 /*
   Game Status
@@ -41,7 +41,8 @@ export const setupNextSyllable = (state, selectedKana, selectedLevel) => {
 };
 
 export const setGivenAnswer = (state, givenAnswer) => {
-  const score = updateScore(state, givenAnswer);
+  const score = updateScore(state.score, givenAnswer.correct);
+  const lives = updateHearts(state.lives, givenAnswer.correct);
   level = state.levelGoal === score ? state.level + 1 : state.level;
 
   return {
@@ -57,7 +58,7 @@ export const setGivenAnswer = (state, givenAnswer) => {
         { id: 4, value: 5 }
       ],
       status: 'spawnGems',
-      lives: getHearts(state, givenAnswer),
+      lives,
       score,
       level
     }

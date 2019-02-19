@@ -1,6 +1,4 @@
-import _ from 'lodash';
-
-export const getChoices = syllables => {
+export const getChoices = (syllables: string[]): string[] => {
   const choices = [];
   const availableSyllables = [...syllables];
 
@@ -16,10 +14,12 @@ export const getChoices = syllables => {
   return choices;
 };
 
-export const getHearts = (state, givenAnswer) => {
-  return givenAnswer.correct ? state.lives : state.lives - 1;
+/**  recalculate hearts depending on answer */
+export const updateHearts = (lives: number, isGivenAnswerCorrect: boolean): number => {
+  return isGivenAnswerCorrect ? lives : lives - 1;
 };
 
-export const updateScore = (state, givenAnswer) => {
-  return givenAnswer.correct ? state.score + 1 : state.score;
+/** recalculate score depending on answer */
+export const updateScore = (score: number, isGivenAnswerCorrect: boolean): number => {
+  return isGivenAnswerCorrect ? score + 1 : score;
 };
