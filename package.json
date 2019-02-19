@@ -9,7 +9,7 @@
     "clean": "rimraf out",
     "build": "npm run clean && tsc",
     "buildAndWatch": "npm run build -- -w",
-    "start": "npm run build && concurrently \"npm run buildAndWatch\" \"npm run start\""
+    "start": "npm run build && concurrently \"npm run buildAndWatch\" \"expo start\""
   },
   "dependencies": {
     "expo": "^32.0.0",
