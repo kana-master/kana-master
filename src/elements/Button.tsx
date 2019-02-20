@@ -1,8 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ViewStyle,
+  TouchableOpacityProps
+} from 'react-native';
 import theme from '../utils/theme';
 
-export default ({ children, highlight, style, ...props }) => {
+export interface Props extends TouchableOpacityProps {
+  children: string;
+  highlight?: boolean;
+  style?: ViewStyle;
+}
+
+export default ({ children, highlight, style, ...props }: Props) => {
   return (
     <TouchableOpacity
       {...props}
