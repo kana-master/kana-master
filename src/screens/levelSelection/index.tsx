@@ -8,7 +8,12 @@ import levels from '../../data/levels';
 import Button from '../../elements/Button';
 import LevelButton from './LevelButton';
 
-class LevelSelection extends React.Component {
+interface Props {
+  navigation: any,
+  unlockedLevel: number
+}
+
+class LevelSelection extends React.Component<Props> {
   state = {
     selectedLevel: this.props.navigation.getParam(
       'preselectedLevel',
@@ -79,9 +84,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ persistedStore }) => {
+const mapStateToProps = ({ persisted }) => {
   return {
-    unlockedLevel: persistedStore.unlockedLevel
+    unlockedLevel: persisted.unlockedLevel
   };
 };
 

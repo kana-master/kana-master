@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Animated, Image, Easing } from 'react-native';
 import _ from 'lodash';
 
-export default class Gem extends React.Component {
+export default class Gem extends React.Component<any> {
   state = {
     animPosition: new Animated.ValueXY({ x: Math.random() * 300, y: 300 })
   };

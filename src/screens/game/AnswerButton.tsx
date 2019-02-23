@@ -1,33 +1,52 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+  ViewStyle
+} from 'react-native';
 import _ from 'lodash';
 import theme from '../../utils/theme';
 
 const { width } = Dimensions.get('window');
 
-export default class AnswerButton extends React.Component {
+interface Props {
+  highlight: boolean;
+  disabled: boolean;
+  style: ViewStyle;
+  onPress: (any) => any;
+  // @TODO: this should be pulled from somewhere
+  answer: { latinChar: any };
+}
+
+interface State {
+  pressed: boolean;
+}
+
+export default class AnswerButton extends React.Component<Props, State> {
   state = {
     pressed: false
   };
 
-  getAnswerStyle(type) {
-    if (_.isBoolean(this.props.highlight)) {
-      return this.props.highlight
+  getAnswerStyle(type, highlight) {
+    if (_.isBoolean(highlight)) {
+      return highlight
         ? styles[`${type}AnswerCorrect`]
         : styles[`${type}AnswerWrong`];
     }
   }
 
   render() {
-    const { onPress, answer, disabled } = this.props;
+    const { highlight, style, onPress, answer, disabled } = this.props;
 
     return (
       <TouchableOpacity
         disabled={disabled}
-        style={[styles.button, this.props.style, this.getAnswerStyle('button')]}
+        style={[styles.button, style, this.getAnswerStyle('button', highlight)]}
         onPress={() => onPress(answer)}
       >
-        <Text style={[styles.text, this.getAnswerStyle('text')]}>
+        <Text style={[styles.text, this.getAnswerStyle('text', highlight)]}>
           {answer.latinChar}
         </Text>
       </TouchableOpacity>

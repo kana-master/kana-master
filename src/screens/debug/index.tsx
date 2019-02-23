@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ persistedStore }) => ({
-  persistedStore
+const mapStateToProps = ({ persisted }) => ({
+  persisted
 });
 
-const mapActionToProps = ({ persistedStore }) => ({
-  clearPersistedStore: persistedStore.clearPersistedStore
+const mapActionToProps = ({ persisted }) => ({
+  clearPersistedStore: persisted.clearPersistedStore
 });
 
 export default connect(

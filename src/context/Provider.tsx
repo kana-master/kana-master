@@ -1,16 +1,13 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
 import _ from 'lodash';
-import JSON5 from 'json5';
-import stores from './stores';
+import defaultStores from './defaultStores';
 import actions from './actions';
-import { getPersistedStore } from './persist/actions';
-import defaultPersistedStore from './persist/store';
+import { getPersistedStore, defaultPersistedStore } from './persist';
 
-export const AppContext = React.createContext();
+export const AppContext = React.createContext({ stores: defaultStores, actions: {} });
 
 export default class Provider extends React.Component {
-  state = {};
+  state: any = { ...defaultStores };
 
   async componentDidMount() {
     const persistedStore = _.merge(
@@ -18,24 +15,28 @@ export default class Provider extends React.Component {
       await getPersistedStore()
     );
 
-    this.setState({ ...stores, persistedStore });
+    this.setState({ ...defaultStores, persistedStore });
   }
 
-  connectedActions = _.mapValues(actions, (category, categoryName) => {
-    return _.mapValues(category, action => {
-      return (...args) =>
-        this.setState((previousState, currentProps) => {
-          return action(previousState[categoryName], ...args);
-        });
-    });
-  });
+  connectedActions = _.mapValues(actions, (category, categoryName) =>
+    _.mapValues(category, (action: any) => (...args) =>
+      this.setState((previousState, currentProps) =>
+        action(previousState[categoryName], ...args)
+      )
+    )
+  );
+
+  /*
+  connectedActions = {gameActions: actions.game}?
+  */
 
   render() {
     return (
+      // @TODO: render loading screen when state is empty
       !_.isEmpty(this.state) && (
         <AppContext.Provider
           value={{
-            state: this.state,
+            stores: this.state,
             actions: this.connectedActions
           }}
         >

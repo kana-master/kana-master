@@ -11,14 +11,20 @@ import { connect } from '../../context/connect';
 const PAUSE = 500;
 const DEFAULT_LEVEL = 1;
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
+interface Props {
+  setupNextSyllable: (arg0: any, arg1: any) => any;
+  navigation: any;
+  game: any;
+  unlockedLevel: any;
+  setGivenAnswer: (any) => any;
+  resetGameState: () => any;
+}
 
-    this.props.setupNextSyllable(
-      'hiragana',
-      this.props.navigation.getParam('level', DEFAULT_LEVEL)
-    );
+class Game extends React.Component<Props> {
+  componentDidMount() {
+    const { setupNextSyllable, navigation } = this.props;
+
+    setupNextSyllable('hiragana', navigation.getParam('level', DEFAULT_LEVEL));
   }
 
   componentDidUpdate() {
@@ -67,7 +73,6 @@ class Game extends React.Component {
             <QuestionView game={game} />
             <AnswerView
               answers={game.choices}
-              correctAnswer={game.correctAnswer}
               givenAnswer={game.givenAnswer}
               checkAnswer={this.checkAnswer}
               disabled={game.status === 'spawnGems'}
@@ -105,18 +110,18 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ game, persistedStore }) => ({
+const mapStateToProps = ({ game, persisted }) => ({
   game,
-  unlockedLevel: persistedStore.unlockedLevel
+  unlockedLevel: persisted.unlockedLevel
 });
 
-const mapActionToProps = ({ game, persistedStore }) => {
+const mapActionToProps = ({ game, persisted }) => {
   return {
     setupNextSyllable: game.setupNextSyllable,
     resetGameState: game.resetGameState,
     setGivenAnswer: game.setGivenAnswer,
     checkGivenAnswer: game.checkGivenAnswer,
-    setPersistedStore: persistedStore.setPersistedStore
+    setPersistedStore: persisted.setPersistedStore
   };
 };
 

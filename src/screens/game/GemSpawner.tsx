@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Animated, Image, Easing } from 'react-native';
 import _ from 'lodash';
 import Gem from './Gem';
 
-export default class GemSpawner extends React.Component {
+export default class GemSpawner extends React.Component<any> {
   state = {
     spawnAnimationDone: false,
     earnedGems: this.props.earnedGems.map(value => ({

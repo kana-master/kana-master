@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { ReactComponentElement, ReactElement } from 'react';
 import { AppContext } from './Provider';
+import { globalStore } from './defaultStores';
 
-export const connect = (
+type connectType = (
+  mapStateToProps?: (stores: globalStore) => any,
+  mapActionToProps?: (actions: any) => any
+) => any;
+
+export const connect: connectType = (
   mapStateToProps = () => null,
   mapActionToProps = () => null
 ) => Component => props => (
@@ -10,7 +16,9 @@ export const connect = (
       return (
         <Component
           {...props}
-          {...mapStateToProps(appContext.state)}
+          // both should insert data into props.store and props.actions
+          // respectively
+          {...mapStateToProps(appContext.stores)}
           {...mapActionToProps(appContext.actions)}
         />
       );
