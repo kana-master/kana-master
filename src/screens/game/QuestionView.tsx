@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Svg } from 'expo';
 import theme from '../../utils/theme';
@@ -7,7 +7,10 @@ import theme from '../../utils/theme';
 const { width } = Dimensions.get('window');
 
 const BottomEllipse = () => (
-  <Svg height={52} width={width} /* style={{ position: 'absolute', bottom: 0 }} */>
+  <Svg
+    height={52}
+    width={width} /* style={{ position: 'absolute', bottom: 0 }} */
+  >
     <Svg.Ellipse
       cx={width / 2}
       cy={0}

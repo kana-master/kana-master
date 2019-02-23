@@ -1,10 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import _ from 'lodash';
 import defaultStores from './defaultStores';
 import actions from './actions';
 import { getPersistedStore, defaultPersistedStore } from './persist';
 
-export const AppContext = React.createContext({ stores: defaultStores, actions: {} });
+export const AppContext = React.createContext({
+  stores: defaultStores,
+  actions: {}
+});
 
 export default class Provider extends React.Component {
   state: any = { ...defaultStores };

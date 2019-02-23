@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, View, Text, Animated, Image, Easing } from 'react-native';
 import _ from 'lodash';
 

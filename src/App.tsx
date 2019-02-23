@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StatusBar, SafeAreaView } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { Font } from 'expo';
@@ -59,7 +59,7 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'raleway-semibold': require('./assets/fonts/Raleway-SemiBold.ttf')
+      'raleway-semibold': require('../assets/fonts/Raleway-SemiBold.ttf')
     });
 
     this.setState({
