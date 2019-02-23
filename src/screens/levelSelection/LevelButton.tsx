@@ -1,14 +1,20 @@
-import React, { ReactChildren } from 'react';
-import { StyleSheet, Text, TouchableOpacity, Image, ViewStyle } from 'react-native';
+import * as React from 'react';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  ViewStyle
+} from 'react-native';
 import theme from '../../utils/theme';
 
 interface Props {
-  children: any,
-  highlight: boolean,
-  disabled: boolean,
-  style?: ViewStyle,
-  onPress: (any) => any
-};
+  children: any;
+  highlight: boolean;
+  disabled: boolean;
+  style?: ViewStyle;
+  onPress: (any) => any;
+}
 
 export default ({ children, highlight, disabled, style, ...props }: Props) => {
   return (

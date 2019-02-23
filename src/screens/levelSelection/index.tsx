@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { LinearGradient } from 'expo';
 import _ from 'lodash';
@@ -9,8 +9,8 @@ import Button from '../../elements/Button';
 import LevelButton from './LevelButton';
 
 interface Props {
-  navigation: any,
-  unlockedLevel: number
+  navigation: any;
+  unlockedLevel: number;
 }
 
 class LevelSelection extends React.Component<Props> {

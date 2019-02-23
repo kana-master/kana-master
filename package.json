@@ -1,5 +1,5 @@
 {
-  "main": "src/App.tsx",
+  "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
     "prettier": "prettier --check \"**/*.js\"",
