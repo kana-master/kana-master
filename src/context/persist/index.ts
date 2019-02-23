@@ -1,7 +1,12 @@
 import _ from 'lodash';
 import { AsyncStorage } from 'react-native';
 import JSON5 from 'json5';
-import defaultStore from './store';
+
+export const defaultPersistedStore = {
+  persisted: {
+    unlockedLevel: 1
+  }
+};
 
 export const getPersistedStore = async () => {
   return JSON5.parse(await AsyncStorage.getItem('persistedStore')) || {};
@@ -18,7 +23,7 @@ export const setPersistedStore = (state, newData) => {
     .catch(err => console.warn(err));
 
   return {
-    persistedStore: {
+    persisted: {
       ...state,
       ...newData
     }
@@ -26,7 +31,7 @@ export const setPersistedStore = (state, newData) => {
 };
 
 export const clearPersistedStore = () => {
-  AsyncStorage.setItem('persistedStore', JSON5.stringify(defaultStore))
+  AsyncStorage.setItem('persistedStore', JSON5.stringify(defaultPersistedStore))
     .then(a => {
       console.log(a);
     })
@@ -34,7 +39,7 @@ export const clearPersistedStore = () => {
 
   return {
     persistedStore: {
-      ...defaultStore
+      ...defaultPersistedStore
     }
   };
 };

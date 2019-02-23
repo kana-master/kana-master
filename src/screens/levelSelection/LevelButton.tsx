@@ -1,8 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import React, { ReactChildren } from 'react';
+import { StyleSheet, Text, TouchableOpacity, Image, ViewStyle } from 'react-native';
 import theme from '../../utils/theme';
 
-export default ({ children, highlight, disabled, style, ...props }) => {
+interface Props {
+  children: any,
+  highlight: boolean,
+  disabled: boolean,
+  style?: ViewStyle,
+  onPress: (any) => any
+};
+
+export default ({ children, highlight, disabled, style, ...props }: Props) => {
   return (
     <TouchableOpacity
       style={[

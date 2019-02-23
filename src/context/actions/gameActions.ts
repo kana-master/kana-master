@@ -43,7 +43,7 @@ export const setupNextSyllable = (state, selectedKana, selectedLevel) => {
 export const setGivenAnswer = (state, givenAnswer) => {
   const score = updateScore(state.score, givenAnswer.correct);
   const lives = updateHearts(state.lives, givenAnswer.correct);
-  level = state.levelGoal === score ? state.level + 1 : state.level;
+  const level = state.levelGoal === score ? state.level + 1 : state.level;
 
   return {
     game: {

@@ -1,4 +1,4 @@
 import * as game from './gameActions';
-import * as persistedStore from '../persist/actions';
+import * as persistedStore from '../persist';
 
 export default { game, persistedStore };
