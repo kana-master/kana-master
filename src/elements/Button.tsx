@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import theme from '../utils/theme';
 
-export interface Props extends TouchableOpacityProps {
+interface Props extends TouchableOpacityProps {
   children: string;
   highlight?: boolean;
   style?: ViewStyle;
