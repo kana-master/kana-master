@@ -1,4 +1,4 @@
-export interface gameStoreProps {
+export interface gameStoreType {
   initialized: boolean;
   correctAnswer: string;
   givenAnswer: string;
