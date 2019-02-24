@@ -2,7 +2,6 @@ import * as React from 'react';
 import _ from 'lodash';
 import defaultStores from './defaultStores';
 import actions from './actions';
-import { getPersistedStore, defaultPersistedStore } from './persist';
 
 export const AppContext = React.createContext({
   stores: defaultStores,
@@ -14,8 +13,8 @@ export default class Provider extends React.Component {
 
   async componentDidMount() {
     const persistedStore = _.merge(
-      { ...defaultPersistedStore },
-      await getPersistedStore()
+      { ...defaultStores.persisted },
+      await actions.persisted.getPersistedStore()
     );
 
     this.setState({ ...defaultStores, persistedStore });
