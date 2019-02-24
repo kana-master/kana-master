@@ -15,11 +15,17 @@ export const getChoices = (syllables: string[]): string[] => {
 };
 
 /**  recalculate hearts depending on answer */
-export const updateHearts = (lives: number, isGivenAnswerCorrect: boolean): number => {
+export const updateHearts = (
+  lives: number,
+  isGivenAnswerCorrect: boolean
+): number => {
   return isGivenAnswerCorrect ? lives : lives - 1;
 };
 
 /** recalculate score depending on answer */
-export const updateScore = (score: number, isGivenAnswerCorrect: boolean): number => {
+export const updateScore = (
+  score: number,
+  isGivenAnswerCorrect: boolean
+): number => {
   return isGivenAnswerCorrect ? score + 1 : score;
 };

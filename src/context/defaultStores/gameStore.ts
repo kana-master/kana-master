@@ -1,12 +1,12 @@
 export interface gameStoreProps {
-  initialized: boolean,
-  correctAnswer: string,
-  givenAnswer: string,
-  choices: string[],
-  score: number,
-  lives: number,
-  level: number,
-  levelGoal: number
+  initialized: boolean;
+  correctAnswer: string;
+  givenAnswer: string;
+  choices: string[];
+  score: number;
+  lives: number;
+  level: number;
+  levelGoal: number;
 }
 
 export default {
