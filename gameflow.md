@@ -28,9 +28,9 @@ A collection of syllables the user has to complete. At the end of the level the 
 Will be rewarded on completion of a level, no matter if the user succeeded or failed.
 Can be used to buy upgrades in the Gems / Jewels store. In this way the player can ease the growing complexitiy / difficulity of newly unlocked levels.
 
-**Heart container**
+**Heart Container**
 
-Represents the amount of wrong answers a user is allowed to give per level. Will be refilled on start of a new level. Initially 3 Heart Containers are given.
+Represents the amount of wrong answers a user is allowed to give per level. Will be refilled on start of a new level. Initially, 3 Heart Containers are given.
 
 **Upgrades**
 
