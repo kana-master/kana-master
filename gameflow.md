@@ -2,16 +2,16 @@
 
 ## Game Logic
 
-The selected level starts and presents the user a random syllable (Hiragna / Katakana) as well as four possible answers.
+The selected level starts and presents the user a random syllable (Hiragana / Katakana) as well as four possible answers.
 The available syllables depend on the selected level.
 
 If the correct answer was selected, the game immediately goes to the next syllable.
 
 If a wrong answer was selected, the game shows a quick indicator that something was wrong, removes a heart container and then goes to the next syllable.
 
-If the required amount of syllables have been answered, the game navigates to the success screen and informs the player how many Gems / Jewels he won as well as if he unlocked new things like syllables.
+If the required amount of syllables have been answered, the game navigates to the success screen and informs the player how many gems / jewels they won as well as if they unlocked new things like syllables.
 
-If the user runs out of Heart Containers the game navigates to the failure screen.
+If the user runs out of heart containers the game navigates to the failure screen.
 
 ## Game Segments
 
@@ -26,17 +26,17 @@ A collection of syllables the user has to complete. At the end of the level the 
 **Gems / Jewels**
 
 Will be rewarded on completion of a level, no matter if the user succeeded or failed.
-Can be used to buy upgrades in the Gems / Jewels store. In this way the player can ease the growing complexitiy / difficulity of newly unlocked levels.
+Can be used to buy upgrades in the gems / jewels store. In this way the player can ease the growing complexity / difficulty of newly unlocked levels.
 
 **Heart Container**
 
-Represents the amount of wrong answers a user is allowed to give per level. Will be refilled on start of a new level. Initially, 3 Heart Containers are given.
+Represents the amount of wrong answers a user is allowed to give per level. Will be refilled on start of a new level. Initially, three heart containers are given.
 
 **Upgrades**
 
-- Additional Heart Containers
-- New and more valubale Gems / Jewels
-- More time to give an answer
+- Additional heart containers
+- New and more valuable gems / jewels
+- Increased maximum time per syllable question
 
 ## Level Object
 
