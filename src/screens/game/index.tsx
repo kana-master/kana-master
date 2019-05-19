@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo';
+import { StackActions, NavigationActions } from 'react-navigation';
 import QuestionView from './QuestionView';
 import AnswerView from './AnswerView';
 import Hearts from './Hearts';
@@ -21,6 +22,10 @@ interface Props {
 }
 
 class Game extends React.Component<Props> {
+  state = {
+    currentLevel: this.props.game.level || DEFAULT_LEVEL
+  };
+
   componentDidMount() {
     const { setupNextSyllable, navigation } = this.props;
 
@@ -28,17 +33,46 @@ class Game extends React.Component<Props> {
   }
 
   componentDidUpdate() {
-    const { game, setupNextSyllable } = this.props;
+    const { currentLevel } = this.state;
+    const { game, setupNextSyllable, setPersistedStore } = this.props;
 
     if (game.pending) {
       setTimeout(() => {
-        if (game.lives === 0) {
-          this.props.navigation.navigate('LevelSelection', {
-            preselectedLevel: game.level
-          });
-        }
+        if (game.level !== currentLevel) {
+          setPersistedStore({ unlockedLevel: game.level });
 
-        setupNextSyllable('hiragana', game.level);
+          const resetAction = StackActions.reset({
+            index: 0,
+            actions: [
+              NavigationActions.navigate({
+                routeName: 'Game',
+                action: NavigationActions.navigate({
+                  routeName: 'Success'
+                })
+              })
+            ]
+          });
+
+          this.props.navigation.dispatch(resetAction);
+        } else if (game.lives === 0) {
+          setPersistedStore({ unlockedLevel: game.level });
+
+          const resetAction = StackActions.reset({
+            index: 0,
+            actions: [
+              NavigationActions.navigate({
+                routeName: 'Game',
+                action: NavigationActions.navigate({
+                  routeName: 'Failure'
+                })
+              })
+            ]
+          });
+
+          this.props.navigation.dispatch(resetAction);
+        } else {
+          setupNextSyllable('hiragana', game.level);
+        }
       }, PAUSE);
     }
   }

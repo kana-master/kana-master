@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    goal: 10
+    goal: 2
   },
   {
     id: 2,

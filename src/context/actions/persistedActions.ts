@@ -15,6 +15,7 @@ const persistedActions: persistedActionsType = {
   },
 
   setPersistedStore: (state, newData) => {
+    console.log(state, newData);
     AsyncStorage.getItem('persistedStore')
       .then(currentData => {
         const newPersistedStore = JSON5.stringify(
