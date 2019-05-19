@@ -26,6 +26,7 @@
     "@types/react-navigation": "^3.0.2",
     "expo-cli": "^2.15.1",
     "prettier": "^1.16.4",
+    "react-native-svg-transformer": "^0.13.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.3"
   },

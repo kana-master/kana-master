@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { LinearGradient } from 'expo';
 import { StackActions, NavigationActions } from 'react-navigation';
 import QuestionView from './QuestionView';
 import AnswerView from './AnswerView';
 import Hearts from './Hearts';
 import Diamonds from './Diamonds';
-import theme from '../../utils/theme';
 import { connect } from '../../context/connect';
 
 const PAUSE = 500;
@@ -94,10 +92,7 @@ class Game extends React.Component<Props> {
     const { game, navigation } = this.props;
 
     return (
-      <LinearGradient
-        style={styles.container}
-        colors={theme.color.gradient.primary}
-      >
+      <View style={styles.container}>
         {game.initialized ? (
           <React.Fragment>
             <View style={styles.statusContainer}>
@@ -123,14 +118,15 @@ class Game extends React.Component<Props> {
             <Text>level {game.level}</Text>
           </React.Fragment>
         ) : null}
-      </LinearGradient>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#9ACFFF'
   },
   statusContainer: {
     paddingHorizontal: 24,
