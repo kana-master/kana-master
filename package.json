@@ -15,9 +15,9 @@
     "expo": "^33.0.7",
     "json5": "^2.1.0",
     "lodash": "^4.17.5",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-navigation": "^3.0.9"
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-navigation": "^3.11.0"
   },
   "devDependencies": {
     "@types/expo": "^32.0.2",
