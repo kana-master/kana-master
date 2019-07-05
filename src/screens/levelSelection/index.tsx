@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import _ from 'lodash';
 import theme from '../../utils/theme';
 import { connect } from '../../context/connect';

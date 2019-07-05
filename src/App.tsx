@@ -5,7 +5,7 @@ import {
   createStackNavigator,
   createBottomTabNavigator
 } from 'react-navigation';
-import { Font } from 'expo';
+import * as Font from 'expo-font';
 import Provider from './context/Provider';
 import LevelSelection from './screens/levelSelection';
 import Game from './screens/game';
