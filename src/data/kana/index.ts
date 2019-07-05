@@ -1,1 +1,3 @@
-export { default as hiragana } from './hiragana';
+import { default as hiragana } from './hiragana';
+
+export { hiragana };
