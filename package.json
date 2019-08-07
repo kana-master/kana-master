@@ -12,7 +12,7 @@
     "start": "expo start"
   },
   "dependencies": {
-    "expo": "^33.0.7",
+    "expo": "^34.0.4",
     "json5": "^2.1.0",
     "lodash": "^4.17.5",
     "react": "16.8.3",
