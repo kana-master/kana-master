@@ -5,7 +5,12 @@ import QuestionView from './QuestionView';
 import AnswerView from './AnswerView';
 import Hearts from './Hearts';
 import Diamonds from './Diamonds';
-import { connect } from '../../context/connect';
+import { connect } from 'react-redux';
+import {
+  resetGameState,
+  setupNextSyllable,
+  setGivenAnswer
+} from '../../redux/actions';
 
 const PAUSE = 500;
 const DEFAULT_LEVEL = 1;
@@ -21,7 +26,7 @@ interface Props {
 
 class Game extends React.Component<Props> {
   state = {
-    currentLevel: this.props.game.level || DEFAULT_LEVEL
+    currentLevel: this.props.navigation.getParam('level') || DEFAULT_LEVEL
   };
 
   componentDidMount() {
@@ -32,12 +37,12 @@ class Game extends React.Component<Props> {
 
   componentDidUpdate() {
     const { currentLevel } = this.state;
-    const { game, setupNextSyllable, setPersistedStore } = this.props;
+    const { game, setupNextSyllable } = this.props;
 
     if (game.pending) {
       setTimeout(() => {
         if (game.level !== currentLevel) {
-          setPersistedStore({ unlockedLevel: game.level });
+          // setPersistedStore({ unlockedLevel: game.level });
 
           const resetAction = StackActions.reset({
             index: 0,
@@ -53,7 +58,7 @@ class Game extends React.Component<Props> {
 
           this.props.navigation.dispatch(resetAction);
         } else if (game.lives === 0) {
-          setPersistedStore({ unlockedLevel: game.level });
+          // setPersistedStore({ unlockedLevel: game.level });
 
           const resetAction = StackActions.reset({
             index: 0,
@@ -140,22 +145,18 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ game, persisted }) => ({
-  game,
-  unlockedLevel: persisted.unlockedLevel
+const mapStateToProps = state => ({
+  game: state.game,
+  unlockedLevel: 1
 });
 
-const mapActionToProps = ({ game, persisted }) => {
-  return {
-    setupNextSyllable: game.setupNextSyllable,
-    resetGameState: game.resetGameState,
-    setGivenAnswer: game.setGivenAnswer,
-    checkGivenAnswer: game.checkGivenAnswer,
-    setPersistedStore: persisted.setPersistedStore
-  };
+const mapDispatchToProps = {
+  setupNextSyllable,
+  resetGameState,
+  setGivenAnswer
 };
 
 export default connect(
   mapStateToProps,
-  mapActionToProps
+  mapDispatchToProps
 )(Game);

@@ -17,16 +17,20 @@
     "lodash": "^4.17.5",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-navigation": "^3.11.0"
+    "react-navigation": "^3.11.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
   },
   "devDependencies": {
     "@types/expo": "^32.0.2",
     "@types/react": "^16.5.0",
     "@types/react-native": "^0.57.38",
     "@types/react-navigation": "^3.0.2",
+    "@types/redux-logger": "^3.0.7",
     "expo-cli": "^3.0.0",
     "prettier": "^1.16.4",
     "react-native-svg-transformer": "^0.13.0",
+    "redux-logger": "^3.0.6",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.3"
   },

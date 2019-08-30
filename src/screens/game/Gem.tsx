@@ -23,7 +23,6 @@ export default class Gem extends React.Component<any> {
   }
 
   render() {
-    console.log(this.props.movementAnim);
     return (
       <Animated.View
         style={[
