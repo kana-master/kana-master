@@ -6,18 +6,22 @@ import {
   createBottomTabNavigator
 } from 'react-navigation';
 import * as Font from 'expo-font';
-import Provider from './context/Provider';
+import { applyMiddleware, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
 import LevelSelection from './screens/levelSelection';
 import Game from './screens/game';
 import Pause from './screens/pause';
-import Debug from './screens/debug';
 import Store from './screens/store';
 import List from './screens/list';
 import Success from './screens/success';
 import Failure from './screens/failure';
+import reducers from './redux/reducers';
 
 StatusBar.setBarStyle('light-content');
 StatusBar.setHidden(true);
+
+const store = createStore(reducers, applyMiddleware(logger));
 
 const TabStack = createBottomTabNavigator({
   LevelSelection,
@@ -41,8 +45,7 @@ const AppNavigator = createStackNavigator(
   {
     Main: TabStack,
     Game: GameStack,
-    Pause,
-    Debug
+    Pause
   },
   {
     mode: 'card',
@@ -69,7 +72,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Provider>
+      <Provider store={store}>
         {this.state.fontLoaded && (
           <SafeAreaView style={{ flex: 1 }}>
             <Routes />

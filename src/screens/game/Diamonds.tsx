@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { connect } from '../../context/connect';
+import { connect } from 'react-redux';
 import theme from '../../utils/theme';
 
 const Diamonds = ({ score, requiredScore }) => {
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ game }) => {
+const mapStateToProps = state => {
   return {
-    score: game.score,
-    requiredScore: game.level.goal
+    score: state.game.score,
+    requiredScore: state.game.level.goal
   };
 };
 

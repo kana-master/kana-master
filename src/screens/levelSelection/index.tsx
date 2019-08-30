@@ -13,12 +13,9 @@ interface Props {
   unlockedLevel: number;
 }
 
-class LevelSelection extends React.Component<Props> {
+export default class LevelSelection extends React.Component<Props> {
   state = {
-    selectedLevel: this.props.navigation.getParam(
-      'preselectedLevel',
-      this.props.unlockedLevel
-    )
+    selectedLevel: this.props.navigation.getParam('preselectedLevel', 1)
   };
 
   render() {
@@ -53,17 +50,6 @@ class LevelSelection extends React.Component<Props> {
         >
           Let's go!
         </Button>
-        <TouchableHighlight
-          onPress={() => this.props.navigation.navigate('Debug')}
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            backgroundColor: 'red'
-          }}
-        >
-          <Text>Debug</Text>
-        </TouchableHighlight>
       </LinearGradient>
     );
   }
@@ -83,11 +69,3 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   }
 });
-
-const mapStateToProps = ({ persisted }) => {
-  return {
-    unlockedLevel: persisted.unlockedLevel
-  };
-};
-
-export default connect(mapStateToProps)(LevelSelection);

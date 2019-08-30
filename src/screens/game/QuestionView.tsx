@@ -5,7 +5,6 @@ import theme from '../../utils/theme';
 import EllipseSVG from '../../../assets/game-ellipse.svg';
 
 const { width } = Dimensions.get('window');
-console.log(width);
 const BottomEllipse = () => (
   <View
     style={{
