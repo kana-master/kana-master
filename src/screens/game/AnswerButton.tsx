@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.color.background.primary,
     width: width / 2 - 32,
-    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     height: 100,
@@ -79,7 +78,8 @@ const styles = StyleSheet.create({
   text: {
     color: theme.color.font.primary,
     fontSize: 42,
-    fontFamily: 'raleway-semibold'
+    fontFamily: 'raleway-semibold',
+    textAlign: 'center'
   },
   textAnswerCorrect: {
     color: theme.color.font.inverted
