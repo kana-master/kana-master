@@ -32,9 +32,9 @@ export default class GemSpawner extends React.Component<any> {
       });
     });
 
-    Animated.stagger(250, fadeInAnimations).start(() =>
-      //   Animated.stagger(250, movementAnimations).start()
-    );
+    // Animated.stagger(250, fadeInAnimations).start(() =>
+    //   //   Animated.stagger(250, movementAnimations).start()
+    // );
   }
 
   removeGem = id => {
