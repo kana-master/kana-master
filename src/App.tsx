@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StatusBar, SafeAreaView } from 'react-native';
+import { StatusBar, SafeAreaView, AsyncStorage } from 'react-native';
 import {
   createAppContainer,
   createStackNavigator,
@@ -7,6 +7,8 @@ import {
 } from 'react-navigation';
 import * as Font from 'expo-font';
 import { applyMiddleware, createStore } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import LevelSelection from './screens/levelSelection';
@@ -16,13 +18,21 @@ import Store from './screens/store';
 import List from './screens/list';
 import Success from './screens/success';
 import Failure from './screens/failure';
-import reducers from './redux/reducers';
+import rootReducer from './redux/reducers';
 
 StatusBar.setBarStyle('light-content');
 StatusBar.setHidden(true);
 
-const store = createStore(reducers, applyMiddleware(logger));
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['progress']
+}
 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+const store = createStore(persistedReducer, applyMiddleware(logger));
+const persistor = persistStore(store)
+ 
 const TabStack = createBottomTabNavigator({
   LevelSelection,
   List,
@@ -73,11 +83,13 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        {this.state.fontLoaded && (
-          <SafeAreaView style={{ flex: 1 }}>
-            <Routes />
-          </SafeAreaView>
-        )}
+        <PersistGate loading={null} persistor={persistor}>
+          {this.state.fontLoaded && (
+            <SafeAreaView style={{ flex: 1 }}>
+              <Routes />
+            </SafeAreaView>
+          )}
+        </PersistGate>
       </Provider>
     );
   }
