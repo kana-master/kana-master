@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import theme from '../../utils/theme';
-import { connect } from '../../context/connect';
 import levels from '../../data/levels';
 import Button from '../../elements/Button';
 import LevelButton from './LevelButton';
@@ -13,11 +13,11 @@ interface Props {
   unlockedLevel: number;
 }
 
-export default class LevelSelection extends React.Component<Props> {
+class LevelSelection extends React.Component<Props> {
   state = {
     selectedLevel: this.props.navigation.getParam('preselectedLevel', 1)
   };
-
+  
   render() {
     return (
       <LinearGradient
@@ -69,3 +69,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   }
 });
+
+
+const mapStateToProps = state => ({
+  unlockedLevel: state.progress.unlockedLevel
+});
+
+export default connect(
+  mapStateToProps,
+)(LevelSelection);

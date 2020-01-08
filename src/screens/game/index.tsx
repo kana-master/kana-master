@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import {
   resetGameState,
   setupNextSyllable,
-  setGivenAnswer
+  setGivenAnswer,
+  updateUnlockedLevel
 } from '../../redux/actions';
 
 const PAUSE = 500;
@@ -37,12 +38,13 @@ class Game extends React.Component<Props> {
 
   componentDidUpdate() {
     const { currentLevel } = this.state;
-    const { game, setupNextSyllable } = this.props;
+    const { game, setupNextSyllable, updateUnlockedLevel } = this.props;
 
     if (game.pending) {
       setTimeout(() => {
         if (game.level !== currentLevel) {
           // setPersistedStore({ unlockedLevel: game.level });
+          updateUnlockedLevel(game.level);
 
           const resetAction = StackActions.reset({
             index: 0,
@@ -152,6 +154,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setupNextSyllable,
+  updateUnlockedLevel,
   resetGameState,
   setGivenAnswer
 };
