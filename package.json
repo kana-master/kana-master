@@ -33,7 +33,7 @@
     "prettier": "^1.16.4",
     "react-native-svg-transformer": "^0.13.0",
     "redux-logger": "^3.0.6",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.2",
     "typescript": "^3.7.2"
   },
   "greenkeeper": {
